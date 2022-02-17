@@ -20,7 +20,7 @@ BSP以外のプロセッサコア。
 
 # 関数
 
-## `vmm_main`(core/main.c:513)
+## `vmm_main`(`core/main.c:513`)
 おそらくブートして一番最初に来る関数。
 ```c
 asmlinkage void
@@ -48,7 +48,7 @@ INITFUNC("global3", baz);
 
 `start_all_processors` で全てのプロセッサコアを起動。
 
-## `start_all_processors`(core/ap.c:397)
+## `start_all_processors`(`core/ap.c:397`)
 ```c
 void
 start_all_processors (void (*bsp_initproc) (void), void (*ap_initproc) (void))
@@ -63,7 +63,7 @@ start_all_processors (void (*bsp_initproc) (void), void (*ap_initproc) (void))
 `bsp_continue(bspinitproc1);` でBSPの起動の続きを行う。
 引数の `bspinitproc1` は関数ポインタ。
 
-## `bsp_continue`(core/ap.c:314)
+## `bsp_continue`(`core/ap.c:314`)
 ```c
 static void
 bsp_continue (asmlinkage void (*initproc_arg) (void))
@@ -79,7 +79,7 @@ bsp_continue (asmlinkage void (*initproc_arg) (void))
 
 `asm_wrrsp_and_jmp` については次で解説する。
 
-## `asm_wrrsp_and_jmp`(core/asm.h:722)
+## `asm_wrrsp_and_jmp`(`core/asm.h:722`)
 ```c
 static inline void
 asm_wrrsp_and_jmp (ulong rsp, void *jmpto)
@@ -98,7 +98,7 @@ asm_wrrsp_and_jmp (ulong rsp, void *jmpto)
 ```
 `rsp` を設定して、 `jmpto` にジャンプしている。
 
-## `bspinitproc1`(core/ap.c:103)
+## `bspinitproc1`(`core/ap.c:103`)
 ```c
 static asmlinkage void
 bspinitproc1 (void)
@@ -138,7 +138,7 @@ UEFIブートであったら、 `alloc_realmodemem` でメモリ確保を行う�
 ここからは戻ってこない。
 戻ってきたら `panic` する。
 
-## `ap_start`(core/ap.c:270)
+## `ap_start`(`core/ap.c:270`)
 ```c
 static void
 ap_start (void)
