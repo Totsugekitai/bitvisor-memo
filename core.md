@@ -184,3 +184,13 @@ ap_start (void)
 	ap_started = true;
 }
 ```
+APをすべてスタートしているっぽい。
+
+物理アドレス0番地に `ljmpw` でどこかに飛ぶようなコードを設定している。
+
+`void *mapmem_hphys (u64 physaddr, uint len, int flags)` は `physaddr` から `physaddr + len - 1` を確保する関数のようだ。
+`hphys` の `h` はhostのhだろう。
+
+`void *mapmem (int flags, u64 physaddr, uint len)` は `physaddr` から `physaddr + len - 1` を確保する関数のようだが、内部で `mapped_hphys_addr()` と `mapped_gphys_addr()` に分岐している。
+ホストとゲスト両対応の関数だと思われる。
+
