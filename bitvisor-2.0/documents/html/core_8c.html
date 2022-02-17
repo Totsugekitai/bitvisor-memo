@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SecureVM: drivers/core.c ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SecureVM
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('core_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">データ構造</a> &#124;
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">core.c ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;core.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+core.c の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="core_8c__incl.png" border="0" usemap="#drivers_2core_8c" alt=""/></div>
+</div>
+</div>
+<p><a href="">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhandler__descriptor.html">handler_descriptor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:aea418cbb2443f1abfd648364619c1347"><td class="memItemLeft" align="right" valign="top"><a id="aea418cbb2443f1abfd648364619c1347"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOTYPE_GET_SIZE</b>(iotype)&#160;&#160;&#160;(iotype &amp; 0x0F)</td></tr>
+<tr class="separator:aea418cbb2443f1abfd648364619c1347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3fd33d1e0605d7f39a3b31eca805b7"><td class="memItemLeft" align="right" valign="top"><a id="a4f3fd33d1e0605d7f39a3b31eca805b7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_HD</b>&#160;&#160;&#160;64</td></tr>
+<tr class="separator:a4f3fd33d1e0605d7f39a3b31eca805b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ab1993aecb38f15c17376b1bfe177c7d1"><td class="memItemLeft" align="right" valign="top"><a id="ab1993aecb38f15c17376b1bfe177c7d1"></a>
+phys_t&#160;</td><td class="memItemRight" valign="bottom"><b>core_mm_read_guest_phys</b> (phys_t phys, void *buf, int len)</td></tr>
+<tr class="separator:ab1993aecb38f15c17376b1bfe177c7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc9af00d27a366118da9e08055b6669"><td class="memItemLeft" align="right" valign="top"><a id="aefc9af00d27a366118da9e08055b6669"></a>
+phys_t&#160;</td><td class="memItemRight" valign="bottom"><b>core_mm_write_guest_phys</b> (phys_t phys, void *buf, int len)</td></tr>
+<tr class="separator:aefc9af00d27a366118da9e08055b6669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce7943618e2f0478aad2467c8661011"><td class="memItemLeft" align="right" valign="top"><a id="a9ce7943618e2f0478aad2467c8661011"></a>
+struct <a class="el" href="structhandler__descriptor.html">handler_descriptor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>alloc_handler_descriptor</b> ()</td></tr>
+<tr class="separator:a9ce7943618e2f0478aad2467c8661011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af40005625334446661d54de9ad53842c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8c.html#af40005625334446661d54de9ad53842c">core_io_register_handler</a> (ioport_t start, size_t num, core_io_handler_t handler, void *arg, enum core_io_prio priority, const char *name)</td></tr>
+<tr class="memdesc:af40005625334446661d54de9ad53842c"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_io_register_handler  <a href="core_8c.html#af40005625334446661d54de9ad53842c">[詳解]</a><br /></td></tr>
+<tr class="separator:af40005625334446661d54de9ad53842c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a606fd916ff1870f2a746f9653c0d91fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8c.html#a606fd916ff1870f2a746f9653c0d91fd">core_io_modify_handler</a> (int hd, ioport_t start, size_t num)</td></tr>
+<tr class="memdesc:a606fd916ff1870f2a746f9653c0d91fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_io_modify_handler  <a href="core_8c.html#a606fd916ff1870f2a746f9653c0d91fd">[詳解]</a><br /></td></tr>
+<tr class="separator:a606fd916ff1870f2a746f9653c0d91fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2978a09f57ed21f5826e7aa5f48f00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8c.html#a0f2978a09f57ed21f5826e7aa5f48f00">core_io_unregister_handler</a> (int hd)</td></tr>
+<tr class="memdesc:a0f2978a09f57ed21f5826e7aa5f48f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister io handler  <a href="core_8c.html#a0f2978a09f57ed21f5826e7aa5f48f00">[詳解]</a><br /></td></tr>
+<tr class="separator:a0f2978a09f57ed21f5826e7aa5f48f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b733cc480661fe31fa61a2573499287"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8c.html#a7b733cc480661fe31fa61a2573499287">core_io_handle_default</a> (core_io_t io, void *data)</td></tr>
+<tr class="memdesc:a7b733cc480661fe31fa61a2573499287"><td class="mdescLeft">&#160;</td><td class="mdescRight">handle default io operation  <a href="core_8c.html#a7b733cc480661fe31fa61a2573499287">[詳解]</a><br /></td></tr>
+<tr class="separator:a7b733cc480661fe31fa61a2573499287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1e14cc93c27697e1bd1db081cb6e06"><td class="memItemLeft" align="right" valign="top"><a id="a0d1e14cc93c27697e1bd1db081cb6e06"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>panic_oom</b> ()</td></tr>
+<tr class="separator:a0d1e14cc93c27697e1bd1db081cb6e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166d6adeedf84c1aad6848b3573382e6"><td class="memItemLeft" align="right" valign="top"><a id="a166d6adeedf84c1aad6848b3573382e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>core_init</b> ()</td></tr>
+<tr class="separator:a166d6adeedf84c1aad6848b3573382e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1201a35737d21eddeaf96ddb867d55cd"><td class="memItemLeft" align="right" valign="top"><a id="a1201a35737d21eddeaf96ddb867d55cd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CORE_INIT</b> (core_init)</td></tr>
+<tr class="separator:a1201a35737d21eddeaf96ddb867d55cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a5b01159cc8ff4659c536b6cd9d7ecad6"><td class="memItemLeft" align="right" valign="top"><a id="a5b01159cc8ff4659c536b6cd9d7ecad6"></a>
+struct <a class="el" href="structhandler__descriptor.html">handler_descriptor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>handler_descriptor</b> [MAX_HD] = { NULL }</td></tr>
+<tr class="separator:a5b01159cc8ff4659c536b6cd9d7ecad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addac6ce48ec81ce436dcafc5a799160b"><td class="memItemLeft" align="right" valign="top"><a id="addac6ce48ec81ce436dcafc5a799160b"></a>
+spinlock_t&#160;</td><td class="memItemRight" valign="bottom"><b>handler_descriptor_lock</b></td></tr>
+<tr class="separator:addac6ce48ec81ce436dcafc5a799160b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>VMM core API support functions (expected to be moved to "core")</p>
+<dl class="section author"><dt>著者</dt><dd>T. Shinagawa </dd></dl>
+
+<p class="definition"> <a class="el" href="">core.c</a> に定義があります。</p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a7b733cc480661fe31fa61a2573499287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b733cc480661fe31fa61a2573499287">&#9670;&nbsp;</a></span>core_io_handle_default()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void core_io_handle_default </td>
+          <td>(</td>
+          <td class="paramtype">core_io_t&#160;</td>
+          <td class="paramname"><em>io</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>handle default io operation </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">io</td><td>io </td></tr>
+    <tr><td class="paramname">data</td><td>data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a606fd916ff1870f2a746f9653c0d91fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606fd916ff1870f2a746f9653c0d91fd">&#9670;&nbsp;</a></span>core_io_modify_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int core_io_modify_handler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ioport_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>core_io_modify_handler </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>start port </td></tr>
+    <tr><td class="paramname">num</td><td>end port </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>handler descriptor </dd></dl>
+
+</div>
+</div>
+<a id="af40005625334446661d54de9ad53842c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af40005625334446661d54de9ad53842c">&#9670;&nbsp;</a></span>core_io_register_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int core_io_register_handler </td>
+          <td>(</td>
+          <td class="paramtype">ioport_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">core_io_handler_t&#160;</td>
+          <td class="paramname"><em>handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum core_io_prio&#160;</td>
+          <td class="paramname"><em>priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>core_io_register_handler </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>start port </td></tr>
+    <tr><td class="paramname">num</td><td>end port </td></tr>
+    <tr><td class="paramname">handler</td><td>handler function </td></tr>
+    <tr><td class="paramname">arg</td><td>argument passed to the handler </td></tr>
+    <tr><td class="paramname">prio</td><td>priority </td></tr>
+    <tr><td class="paramname">name</td><td>driver's name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>handler descriptor </dd></dl>
+
+</div>
+</div>
+<a id="a0f2978a09f57ed21f5826e7aa5f48f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2978a09f57ed21f5826e7aa5f48f00">&#9670;&nbsp;</a></span>core_io_unregister_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int core_io_unregister_handler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>unregister io handler </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hd</td><td>handler descriptor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="acore_8c_html_a0f2978a09f57ed21f5826e7aa5f48f00"><div class="ttname"><a href="core_8c.html#a0f2978a09f57ed21f5826e7aa5f48f00">core_io_unregister_handler</a></div><div class="ttdeci">int core_io_unregister_handler(int hd)</div><div class="ttdoc">unregister io handler</div><div class="ttdef"><b>Definition:</b> core.c:270</div></div>
+<div class="ttc" id="astructcompat__list_html"><div class="ttname"><a href="structcompat__list.html">compat_list</a></div><div class="ttdef"><b>Definition:</b> pci_match.c:72</div></div>
+<div class="ttc" id="astructremap__inf_html"><div class="ttname"><a href="structremap__inf.html">remap_inf</a></div><div class="ttdef"><b>Definition:</b> iommu.c:56</div></div>
+<div class="ttc" id="astructpci__monitor__options_html"><div class="ttname"><a href="structpci__monitor__options.html">pci_monitor_options</a></div><div class="ttdef"><b>Definition:</b> pci_monitor.c:98</div></div>
+<div class="ttc" id="astructpci__config__mmio__data_html"><div class="ttname"><a href="structpci__config__mmio__data.html">pci_config_mmio_data</a></div><div class="ttdef"><b>Definition:</b> pci_internal.h:33</div></div>
+<div class="ttc" id="acore_8c_html_af40005625334446661d54de9ad53842c"><div class="ttname"><a href="core_8c.html#af40005625334446661d54de9ad53842c">core_io_register_handler</a></div><div class="ttdeci">int core_io_register_handler(ioport_t start, size_t num, core_io_handler_t handler, void *arg, enum core_io_prio priority, const char *name)</div><div class="ttdoc">core_io_register_handler</div><div class="ttdef"><b>Definition:</b> core.c:197</div></div>
+<div class="ttc" id="astructx540__rdesc_html"><div class="ttname"><a href="structx540__rdesc.html">x540_rdesc</a></div><div class="ttdef"><b>Definition:</b> x540.c:110</div></div>
+<div class="ttc" id="astructx540__hook__context_html"><div class="ttname"><a href="structx540__hook__context.html">x540_hook_context</a></div><div class="ttdef"><b>Definition:</b> x540.c:139</div></div>
+<div class="ttc" id="acore_8c_html_a606fd916ff1870f2a746f9653c0d91fd"><div class="ttname"><a href="core_8c.html#a606fd916ff1870f2a746f9653c0d91fd">core_io_modify_handler</a></div><div class="ttdeci">int core_io_modify_handler(int hd, ioport_t start, size_t num)</div><div class="ttdoc">core_io_modify_handler</div><div class="ttdef"><b>Definition:</b> core.c:246</div></div>
+<div class="ttc" id="astructpci__match__number__list_html"><div class="ttname"><a href="structpci__match__number__list.html">pci_match_number_list</a></div><div class="ttdef"><b>Definition:</b> pci_match.c:66</div></div>
+<div class="ttc" id="aieee1394_8c_html_affa77df568604658406553aa2b46aef2"><div class="ttname"><a href="ieee1394_8c.html#affa77df568604658406553aa2b46aef2">ieee1394_init</a></div><div class="ttdeci">void ieee1394_init(void)</div><div class="ttdoc">driver init function automatically called at boot time</div><div class="ttdef"><b>Definition:</b> ieee1394.c:83</div></div>
+<div class="ttc" id="astructx540_html"><div class="ttname"><a href="structx540.html">x540</a></div><div class="ttdef"><b>Definition:</b> x540.c:154</div></div>
+<div class="ttc" id="astructx540__tdesc_html"><div class="ttname"><a href="structx540__tdesc.html">x540_tdesc</a></div><div class="ttdef"><b>Definition:</b> x540.c:82</div></div>
+<div class="ttc" id="astructieee1394_html"><div class="ttname"><a href="structieee1394.html">ieee1394</a></div><div class="ttdef"><b>Definition:</b> ieee1394log.c:72</div></div>
+<div class="ttc" id="astructpci__config__address__t_html"><div class="ttname"><a href="structpci__config__address__t.html">pci_config_address_t</a></div><div class="ttdef"><b>Definition:</b> pci.h:38</div></div>
+<div class="ttc" id="astructpci__monitor__time_html"><div class="ttname"><a href="structpci__monitor__time.html">pci_monitor_time</a></div><div class="ttdef"><b>Definition:</b> pci_monitor.c:107</div></div>
+<div class="ttc" id="astructpci__msi_html"><div class="ttname"><a href="structpci__msi.html">pci_msi</a></div><div class="ttdef"><b>Definition:</b> pci_core.c:46</div></div>
+<div class="ttc" id="astructhandler__descriptor_html"><div class="ttname"><a href="structhandler__descriptor.html">handler_descriptor</a></div><div class="ttdef"><b>Definition:</b> core.c:105</div></div>
+<div class="ttc" id="astructpci__config__space_html"><div class="ttname"><a href="structpci__config__space.html">pci_config_space</a></div><div class="ttdef"><b>Definition:</b> pci.h:54</div></div>
+<div class="ttc" id="astructvga__func__data_html"><div class="ttname"><a href="structvga__func__data.html">vga_func_data</a></div><div class="ttdef"><b>Definition:</b> vga_intel.c:37</div></div>
+<div class="ttc" id="astructpci__bar__info_html"><div class="ttname"><a href="structpci__bar__info.html">pci_bar_info</a></div><div class="ttdef"><b>Definition:</b> pci.h:176</div></div>
+<div class="ttc" id="astructpci__bridge__callback__list_html"><div class="ttname"><a href="structpci__bridge__callback__list.html">pci_bridge_callback_list</a></div><div class="ttdef"><b>Definition:</b> pci_core.c:51</div></div>
+<div class="ttc" id="astructx540__config_html"><div class="ttname"><a href="structx540__config.html">x540_config</a></div><div class="ttdef"><b>Definition:</b> x540.c:39</div></div>
+<div class="ttc" id="astructpci__driver_html"><div class="ttname"><a href="structpci__driver.html">pci_driver</a></div><div class="ttdef"><b>Definition:</b> pci.h:153</div></div>
+<div class="ttc" id="astructpci__monitor__log_html"><div class="ttname"><a href="structpci__monitor__log.html">pci_monitor_log</a></div><div class="ttdef"><b>Definition:</b> pci_monitor.c:89</div></div>
+<div class="ttc" id="astructpci__device_html"><div class="ttname"><a href="structpci__device.html">pci_device</a></div><div class="ttdef"><b>Definition:</b> pci.h:128</div></div>
+<div class="ttc" id="apci__init_8h_html"><div class="ttname"><a href="pci__init_8h.html">pci_init.h</a></div><div class="ttdoc">PCI driver header (init)</div></div>
+<div class="ttc" id="astructpci__bridge__callback_html"><div class="ttname"><a href="structpci__bridge__callback.html">pci_bridge_callback</a></div><div class="ttdef"><b>Definition:</b> pci.h:182</div></div>
+<div class="ttc" id="astructpci__monitor__host_html"><div class="ttname"><a href="structpci__monitor__host.html">pci_monitor_host</a></div><div class="ttdef"><b>Definition:</b> pci_monitor.c:112</div></div>
+<div class="ttc" id="acore_8c_html_a7b733cc480661fe31fa61a2573499287"><div class="ttname"><a href="core_8c.html#a7b733cc480661fe31fa61a2573499287">core_io_handle_default</a></div><div class="ttdeci">void core_io_handle_default(core_io_t io, void *data)</div><div class="ttdoc">handle default io operation</div><div class="ttdef"><b>Definition:</b> core.c:288</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="core_8c.html">core.c</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+digraph "pci_config_space"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{pci_config_space\n|+ regs8\l+ regs32\l+ vendor_id\l+ device_id\l+ command\l+ status\l+ revision_id\l+ class_code\l+ programming_interface\l+ sub_class\lほか 17 件…\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+}

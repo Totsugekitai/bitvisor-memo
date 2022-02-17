@@ -1,0 +1,25 @@
+digraph "pci_msi"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{pci_msi\n|+ cap\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +dev" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{pci_device\n|+ host\l+ driver_options\l+ base_address_mask\l+ in_base_address_mask\l_emulation\l+ base_address_mask_valid\l+ initial_bus_no\l+ yes\l+ initial_secondary_bus_no\l+ secondary_bus_no\l+ subordinate_bus_no\lほか 7 件…\l|+ LIST_DEFINE()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__device.html",tooltip=" "];
+  Node2 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +parent_bridge" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +config_space" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{pci_config_space\n|+ regs8\l+ regs32\l+ vendor_id\l+ device_id\l+ command\l+ status\l+ revision_id\l+ class_code\l+ programming_interface\l+ sub_class\lほか 17 件…\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__config__space.html",tooltip=" "];
+  Node4 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +driver" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{pci_driver\n|+ device\l+ new\l+ config_read\l+ config_write\l+ disconnect\l+ reconnect\l+ use_base_address_mask\l_emulation\l+ options\l+ name\l+ longname\l+ driver_options\l|+ LIST_DEFINE()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__driver.html",tooltip=" "];
+  Node5 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +config_mmio" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node5 [label="{pci_config_mmio_data\n|+ base\l+ seg_group\l+ bus_start\l+ bus_end\l+ phys\l+ len\l+ map\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__config__mmio__data.html",tooltip=" "];
+  Node5 -> Node5 [color="grey25",fontsize="10",style="solid",label=" +next" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node6 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +address" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node6 [label="{pci_config_address_t\n|+ value\l+ type\l+ reg_no\l+ func_no\l+ device_no\l+ bus_no\l+ reserved\l+ allow\l+ @4\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__config__address__t.html",tooltip=" "];
+  Node7 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +callback_list" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node7 [label="{pci_bridge_callback_list\n||}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__bridge__callback__list.html",tooltip=" "];
+  Node2 -> Node7 [color="grey25",fontsize="10",style="solid",label=" +dev" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node7 -> Node7 [color="grey25",fontsize="10",style="solid",label=" +next" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node8 -> Node7 [color="grey25",fontsize="10",style="solid",label=" +callback" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node8 [label="{pci_bridge_callback\n|+ pre_config_write\l+ post_config_write\l+ force_command\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structpci__bridge__callback.html",tooltip=" "];
+}

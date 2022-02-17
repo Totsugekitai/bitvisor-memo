@@ -1,0 +1,16 @@
+digraph "x540_hook_context"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{x540_hook_context\n|+ barindex\l+ ishooked\l+ isio\l+ iohandle\l+ mmhandle\l+ mapsize\l+ mappedaddr\l+ baseaddr\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +x540" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{x540\n|+ macaddr\l+ lock\l+ xmit_enabled\l+ num_tdesc\l+ tdesc_ring_phys\l+ tdesc_buf\l+ recv_enabled\l+ num_rdesc\l+ rdesc_ring_phys\l+ rdesc_buf\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structx540.html",tooltip=" "];
+  Node3 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +config" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{x540_config\n|+ ishidden\l+ iscontroled\l+ use_fortty\l+ bufsize\l+ num_tdesc\l+ num_rdesc\l+ use_flowcontrol\l+ use_jumboframe\l+ jumboframe_size\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structx540__config.html",tooltip=" "];
+  Node4 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +tdesc_ring" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{x540_tdesc\n|+ bufaddr\l+ len\l+ cso\l+ cmd_eop\l+ cmd_ifcs\l+ cmd_ic\l+ cmd_rs\l+ cmd_rsv0\l+ cmd_dext\l+ cmd_vle\lほか 6 件…\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structx540__tdesc.html",tooltip=" "];
+  Node5 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +rdesc_ring" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node5 [label="{x540_rdesc\n|+ bufaddr\l+ len\l+ checksum\l+ status_dd\l+ status_eop\l+ status_rsv\l+ status_vp\l+ status_udpcs\l+ status_tcpcs\l+ status_ipcs\lほか 6 件…\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structx540__rdesc.html",tooltip=" "];
+  Node1 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +context" ,arrowhead="odiamond",fontname="Helvetica"];
+}

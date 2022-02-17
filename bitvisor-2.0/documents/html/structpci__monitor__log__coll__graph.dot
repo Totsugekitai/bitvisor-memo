@@ -1,0 +1,7 @@
+digraph "pci_monitor_log"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{pci_monitor_log\n|+ time\l+ value\l+ base\l+ offset\l+ count\l+ n\l+ rw\l+ type\l+ len\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+}

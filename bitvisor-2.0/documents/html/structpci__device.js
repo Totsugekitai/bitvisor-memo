@@ -1,0 +1,27 @@
+var structpci__device =
+[
+    [ "LIST_DEFINE", "structpci__device.html#a2ad525ef56c564c3245aea33ec81e30d", null ],
+    [ "address", "structpci__device.html#a38e61d43be79357d0cda1a9d035a0110", null ],
+    [ "base_address_mask", "structpci__device.html#a6fdc9d5ca3ac1c7c730a4e9c5f112e4f", null ],
+    [ "base_address_mask_valid", "structpci__device.html#adb483299c6f32095dcc7ee7c05f09afb", null ],
+    [ "bridge", "structpci__device.html#a8902638ee35d79dfd3adaf93f624871f", null ],
+    [ "callback_list", "structpci__device.html#a25da1756c9858e86c506cc49ea947a2a", null ],
+    [ "callback_lock", "structpci__device.html#a5f4394ee3d510f915dab9d3e6c83d3fa", null ],
+    [ "config_mmio", "structpci__device.html#ab6c720a99412aa838e1a5b262c01a92e", null ],
+    [ "config_space", "structpci__device.html#ae497622b47d64242a8e0a127ea799ac0", null ],
+    [ "disconnect", "structpci__device.html#ab124d22c3f0b833896398763950dbefa", null ],
+    [ "driver", "structpci__device.html#a8c42ea9dafab15170be4786177a45f95", null ],
+    [ "driver_options", "structpci__device.html#a0f6e112b7fdda0a659db8d2e9e2be154", null ],
+    [ "fake_command_fixed", "structpci__device.html#a132ca904d832b1269ad21550f70c1997", null ],
+    [ "fake_command_mask", "structpci__device.html#ada9d7c2f313a446fe63189a3ffdcda33", null ],
+    [ "fake_command_virtual", "structpci__device.html#a0c8b2f749b2af66d032a4184b60ebe56", null ],
+    [ "host", "structpci__device.html#aab00684fa66135ec9687cc6192e28023", null ],
+    [ "hotplug", "structpci__device.html#ae1a105c243990aa38ad205461e9cd1d7", null ],
+    [ "in_base_address_mask_emulation", "structpci__device.html#aa9f7e12f82eaf707395a9d022d43e7d0", null ],
+    [ "initial_bus_no", "structpci__device.html#a0ae1c73d3429382fd4fed15938df975b", null ],
+    [ "initial_secondary_bus_no", "structpci__device.html#adcc4b885d0d90d5a01d8a214b73203a9", null ],
+    [ "parent_bridge", "structpci__device.html#a6e8dbbd24c03ae8d16c840d9a8758744", null ],
+    [ "secondary_bus_no", "structpci__device.html#acbcd0db7ad58c4a6c2d8c26ad4ea34cc", null ],
+    [ "subordinate_bus_no", "structpci__device.html#ae42c487c61ce4a3c43ade5fba829a3b6", null ],
+    [ "yes", "structpci__device.html#a13755f2affd7186273e99175e975939c", null ]
+];
