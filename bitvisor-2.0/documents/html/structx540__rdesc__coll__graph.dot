@@ -1,7 +1,0 @@
-digraph "x540_rdesc"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{x540_rdesc\n|+ bufaddr\l+ len\l+ checksum\l+ status_dd\l+ status_eop\l+ status_rsv\l+ status_vp\l+ status_udpcs\l+ status_tcpcs\l+ status_ipcs\lほか 6 件…\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
-}
