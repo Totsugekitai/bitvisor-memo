@@ -2,9 +2,16 @@
 
 - BitVisor-2.0 Last Update: 2022-02-09 を読む
 
+## 参考資料
+
+- [BitVisor本体のブート仕様](https://qiita.com/hdk_2/items/b73161f08fefce0d99c3)
+- [BitVisor ブート時に通るソースコードを辿ってみる](https://qiita.com/deep_tkkn/items/a05f87749ee352547e40)
+- [BitVisorの仮想メモリーマップ](https://qiita.com/hdk_2/items/6c7aaa72f5dcfcfda342)
+- [BitVisorのVMM呼び出しAPI](https://qiita.com/hdk_2/items/c8c47ac91ab59b75549c)
+
 ## 雑多なものの解説
 
-### `asmlinkage`(include/core/linkage.h:33)
+### `asmlinkage`(`include/core/linkage.h:33`)
 ```c
 #define asmlinkage __attribute__ ((regparm (0)))
 ```
@@ -193,4 +200,50 @@ APをすべてスタートしているっぽい。
 
 `void *mapmem (int flags, u64 physaddr, uint len)` は `physaddr` から `physaddr + len - 1` を確保する関数のようだが、内部で `mapped_hphys_addr()` と `mapped_gphys_addr()` に分岐している。
 ホストとゲスト両対応の関数だと思われる。
+ここでは `flag` に `MAPMEM_HPHYS | MAPMEM_WRITE` を設定しているので、ホストの物理アドレスを書き込み可能にしていると思われる。
 
+`for` 文では多分APが起動するのを待っている。
+最後に起動したフラグを `true` にしてエンド。
+
+## `bsp_proc`(`core/main.c:505`)
+`bspinitproc1()` に戻ると、最終的には `initproc_bsp()` を呼び出している。
+`initproc_bsp()` は関数ポインタで、これは `vmm_main()` で `bsp_proc()` を代入されている。
+```c
+static void
+bsp_proc (void)
+{
+	call_initfunc ("bsp");
+	call_parallel ();
+	call_initfunc ("pcpu");
+}
+```
+`call_initfunc()` で登録された初期化関数を呼び出している。
+
+`call_initfunc ("pcpu")` で最後に `create_pass_vm()` という関数が呼ばれるらしい。
+
+`call_parallel()` を追う。
+
+## `call_parallel`(`core/main.c:476`)
+```c
+static void
+call_parallel (void)
+{
+	static struct {
+		char *name;
+		ulong not_called;
+	} paral[] = {
+		{ "paral0", 1 },
+		{ "paral1", 1 },
+		{ "paral2", 1 },
+		{ "paral3", 1 },
+		{ NULL, 0 }
+	};
+	int i;
+
+	for (i = 0; paral[i].name; i++) {
+		if (asm_lock_ulong_swap (&paral[i].not_called, 0))
+			call_initfunc (paral[i].name);
+	}
+}
+```
+これも結局 `paralx` でマークされた初期化関数を呼び出しているようである。
