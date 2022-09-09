@@ -1,5 +1,12 @@
 {
+    "editor.renderWhitespace": "boundary",
+    "C_Cpp.default.includePath": [
+        "./bitvisor/include"
+    ],
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
     "files.associations": {
-        "entry.h": "c"
+        "acpi.h": "c",
+        "common.h": "c",
+        "list.h": "c"
     }
 }
