@@ -1,12 +1,20 @@
 {
     "editor.renderWhitespace": "boundary",
     "C_Cpp.default.includePath": [
-        "./bitvisor/include"
+        "bitvisor/include",
+        "bitvisor/edk/Foundation/Include",
+        "bitvisor/edk/Foundation/Efi/Include",
+        "bitvisor/edk/Foundation/Efi",
+        "bitvisor/include/share",
+        "bitvisor/edk/Foundation/Framework/Include"
     ],
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "files.associations": {
         "acpi.h": "c",
         "common.h": "c",
-        "list.h": "c"
+        "list.h": "c",
+        "efiapi.h": "c",
+        "vmm_types.h": "c",
+        "uefi_boot.h": "c"
     }
 }
