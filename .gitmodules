@@ -1,0 +1,3 @@
+[submodule "bitvisor"]
+	path = bitvisor
+	url = https://github.com/matsu/bitvisor.git
