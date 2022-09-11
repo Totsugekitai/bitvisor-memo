@@ -247,3 +247,167 @@ call_parallel (void)
 }
 ```
 これも結局 `paralx` でマークされた初期化関数を呼び出しているようである。
+
+## `create_pass_vm` ( `core/main.c` )
+
+```c
+static void
+create_pass_vm (void)
+{
+	bool bsp = false;
+	static struct vcpu *vcpu0;
+
+	if (currentcpu->cpunum == 0)
+		bsp = true;
+	sync_all_processors ();
+	if (bsp) {
+		load_new_vcpu (NULL);
+		vcpu0 = current;
+	}
+	sync_all_processors ();
+	if (!bsp)
+		load_new_vcpu (vcpu0);
+	set_fullvirtualize ();
+	sync_all_processors ();
+	current->pass_vm = true;
+	current->vmctl.vminit ();
+	call_initfunc ("pass");
+	sync_all_processors ();
+	if (bsp) {
+		vmmcall_boot_enable (bsp_init_thread, NULL);
+	} else {
+		initregs ();
+		current->vmctl.init_signal ();
+	}
+	current->vmctl.enable_resume ();
+	current->initialized = true;
+	sync_all_processors ();
+	if (bsp)
+		print_startvm_msg ();
+	currentcpu->pass_vm_created = true;
+#ifdef DEBUG_GDB
+	if (!bsp)
+		for (;;)
+			asm_cli_and_hlt ();
+#endif
+	current->vmctl.start_vm ();
+	panic ("VM stopped.");
+}
+```
+
+BSP、APともに最終的に `current->vmctl.start_vm()` を呼び出してそこから戻らない。
+ここからはメーカー別の処理になる。
+
+## `vt_start_vm` ( `core/vt_main.c` )
+
+```c
+void
+vt_start_vm (void)
+{
+	vt_paging_start ();
+	vt_mainloop ();
+}
+```
+
+`vt_mainloop` をcall。
+
+## `vt_mainloop` ( `core/vt_main.c` )
+
+```c
+static void
+vt_mainloop (void)
+{
+	enum vmmerr err;
+	ulong cr0, acr;
+	u64 efer;
+	bool nmi;
+
+	for (;;) {
+		schedule ();
+		vt_vmptrld (current->u.vt.vi.vmcs_region_phys);
+		panic_test ();
+		if (current->initipi.get_init_count ())
+			vt_init_signal ();
+		if (current->halt) {
+			vt__halt ();
+			current->halt = false;
+			continue;
+		}
+		/* when the state is switching between real mode and
+		   protected mode, we try emulation first */
+		/* SWITCHING:
+		   mov  %cr0,%eax
+		   or   $CR0_PE_BIT,%eax
+		   mov  %eax,%cr0
+		   ljmp $0x8,$1f       | SWITCHING STATE
+		   1:                  |
+		   mov  $0x10,%eax     | segment registers hold the contents
+		   mov  %eax,%ds       | in previous mode. we use interpreter
+		   mov  %eax,%es       | to emulate this situation.
+		   mov  %eax,%fs       | maximum 32 instructions are emulated
+		   mov  %eax,%gs       | because the interpreter is too slow.
+		   mov  %eax,%ss       |
+		   ...
+		 */
+		if (current->u.vt.vr.sw.enable) {
+			current->u.vt.vr.sw.num++;
+			if (current->u.vt.vr.sw.num >= 32) {
+				/* consider emulation is not needed after
+				   32 instructions are executed */
+				current->u.vt.vr.sw.enable = 0;
+				vt_update_exception_bmp ();
+				continue;
+			}
+			vt_read_control_reg (CONTROL_REG_CR0, &cr0);
+			if (cr0 & CR0_PG_BIT) {
+				vt_read_msr (MSR_IA32_EFER, &efer);
+				if (efer & MSR_IA32_EFER_LME_BIT) {
+					vt_read_sreg_acr (SREG_CS, &acr);
+					if (acr & ACCESS_RIGHTS_L_BIT) {
+						/* long mode */
+						current->u.vt.vr.sw.enable = 0;
+						vt_update_exception_bmp ();
+						continue;
+					}
+				}
+			}
+			err = cpu_interpreter ();
+			if (err == VMMERR_SUCCESS) /* emulation successful */
+				continue;
+			else if (err == VMMERR_UNSUPPORTED_OPCODE ||
+				 err == VMMERR_SW)
+				; /* unsupported/run as it is */
+			else	/* failed */
+				panic ("vt_mainloop ERR %d", err);
+			/* continue when the instruction is not supported
+			   or should be executed as it is.
+			   (sw.enable may be changed after cpu_interpreter())
+			*/
+		}
+		/* when the state is switching, do single step */
+		if (current->u.vt.vr.sw.enable) {
+			vt__nmi ();
+			vt_interrupt ();
+			vt__event_delivery_setup ();
+			vt_msr_own_process_msrs ();
+			nmi = vt__vm_run_with_tf ();
+			vt_paging_tlbflush ();
+			if (!nmi) {
+				vt__event_delivery_check ();
+				vt__exit_reason ();
+			}
+		} else {	/* not switching */
+			vt__nmi ();
+			vt_interrupt ();
+			vt__event_delivery_setup ();
+			vt_msr_own_process_msrs ();
+			nmi = vt__vm_run ();
+			vt_paging_tlbflush ();
+			if (!nmi) {
+				vt__event_delivery_check ();
+				vt__exit_reason ();
+			}
+		}
+	}
+}
+```
